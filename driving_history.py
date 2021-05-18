@@ -10,17 +10,14 @@ df["Trip Time"] = pd.to_timedelta(df["Trip Time"])
 df["Idle Time"] = pd.to_timedelta(df["Idle Time"])
 
 # Manipulate
-to_plot = df.resample("D", on="Start Time").agg(
+daily_resample = df.resample("D", on="Start Time").agg(
     {
         "Total Distance (mi)": sum,
-        #"Trip Time": sum,
-        #"Idle Time": sum,
-        "Top Speed (mph)": max
+        "Top Speed (mph)": max,
+        "Trip Time": sum,
+        "Idle Time": sum
     }
 )
 
-print(to_plot)
-
 # Plot
-to_plot.plot.area(subplots=True)
 plt.show()

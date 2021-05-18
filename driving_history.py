@@ -27,6 +27,7 @@ daily_resample["Idle Time"] = daily_resample["Idle Time"].dt.total_seconds()
 
 # Plot
 daily_resample.plot.area(subplots=True)
+daily_resample.plot.area(y=["Idle Time", "Trip Time"])
 
 plt.tight_layout()
 plt.show()

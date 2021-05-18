@@ -22,8 +22,14 @@ daily_resample = df.resample("D", on="Start Time").agg(
     }
 )
 
+daily_resample["Trip Time"] = daily_resample["Trip Time"].dt.total_seconds()
+daily_resample["Idle Time"] = daily_resample["Idle Time"].dt.total_seconds()
+
 pd.set_option('display.max_columns', None)
 print(daily_resample.head())
 
 # Plot
+daily_resample.plot.area(subplots=True)
+
+plt.tight_layout()
 plt.show()
